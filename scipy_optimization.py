@@ -45,17 +45,20 @@ eq_cons = {'type': 'eq',
 
 
 def f(x):
+    f_val = 0.0;
     f_val = (1.0-x[0])**2 + 100.0*(x[1] - x[0]**2)**2;
     return f_val;
 
 def df(x):
-    df_val = np.zeros_like(x);
+    # df_val = np.zeros_like(x);
+    df_val = np.array([0.0,0.0]);
     df_val[0] = -2*(1-x[0]) - 400*x[0]*(x[1] - x[0]**2);
     df_val[1] = 200*(x[1] - x[0]**2);
     return df_val;
 
 def d2f(x):
-    d2f_val = np.matrix( [[0,0], [0,0]] );
+    d2f_val = np.array( [[0.0,0.0], 
+                         [0.0,0.0]] );
     d2f_val[0][0] = 2.0 + 800.0*x[0];
     d2f_val[0][1] = -400.0*x[0];
     d2f_val[1][0] = -400.0*x[0];
@@ -63,7 +66,7 @@ def d2f(x):
     return d2f_val;
 
 
-x0 = np.array([0.5, 0]);
+x0 = np.array([0.5, 0.0]);
 res = minimize(f, x0, method='SLSQP', jac=df, hess=d2f,
                constraints=[eq_cons, ineq_cons], options={'ftol': 1e-9, 'disp': True},
                bounds=bounds);
