@@ -1,4 +1,4 @@
-# Tutorial: Constrained Optimizaton with SciPy, GEKKO/APOPT and IPOPT
+# Tutorial: Constrained optimizaton with SciPy, GEKKO/APOPT and IPOPT
 The code contains examples of optmization using available open-source packages.
 ## Installation of dependencies
 SciPy, IPOPT and GEKKO can be installed through pip by running the following in the terminal:  
