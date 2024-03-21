@@ -8,11 +8,14 @@ def run_optimizer(constraint):
     m.options.SOLVER=1; # Uses SQP from APOPT
     m.options.OTOL = 1.0e-9;
     m.options.RTOL = 1.0e-9;
+    m.solver_options = ['minlp_as_nlp 1', 'nlp_maximum_iterations 500'];
     # Note: Gradients and Hessians are computed using automatic differentiation.
     x = m.Array(m.Var,2);
+    x[0].value = 0.0;
+    x[1].value = 0.0;
     m.Minimize(obj_func(x));
     m.Equation(constraint(x)==0.0); 
-    m.solve();
+    m.solve(disp=True);
     print("Optimal solution = ",x);
     return x;
 
